@@ -20,11 +20,17 @@ export function saveCurrentUser(user) {
   window.dispatchEvent(new CustomEvent("datastock-user-updated", { detail: user }));
 }
 
+export function clearCurrentUser() {
+  localStorage.removeItem("datastock-user");
+  window.dispatchEvent(new CustomEvent("datastock-user-updated", { detail: null }));
+}
+
 export function getUserRole(user = getCurrentUser()) {
   return String(user?.rol || "administrador").toLowerCase();
 }
 
 export function canAccess(permission, user = getCurrentUser()) {
+  if (!user) return false;
   const permissions = rolePermissions[getUserRole(user)] || rolePermissions.consulta;
   return permissions.includes(permission);
 }

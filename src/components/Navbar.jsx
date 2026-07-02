@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import SessionStatusBadge from "./SessionStatusBadge.jsx";
 import ThemeToggleButton from "./ThemeToggleButton.jsx";
 import { useSessionUser } from "../hooks/useSessionUser.js";
 import { canAccess } from "../utils/auth.js";
@@ -27,9 +28,7 @@ function Navbar() {
             {user?.rol ? `Rol: ${user.rol}` : "Inventario activo"}
           </div>
           <ThemeToggleButton />
-          <div className="rounded-full bg-[#69b523] px-4 py-2 text-sm font-bold text-white shadow-lg shadow-[#69b523]/25">
-            En linea
-          </div>
+          <SessionStatusBadge />
         </div>
       </div>
 

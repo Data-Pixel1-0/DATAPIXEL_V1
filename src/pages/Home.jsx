@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import SessionStatusBadge from "../components/SessionStatusBadge.jsx";
 import ThemeToggleButton from "../components/ThemeToggleButton.jsx";
 import hero from "../assets/hero.png";
 import logo from "../assets/logo.png";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   const highlights = [
     {
       value: "24/7",
@@ -55,16 +54,7 @@ export default function Home() {
             <img src={logo} alt="Data Stock" className="h-16 w-auto object-contain sm:h-20" />
           </div>
 
-          <div className="flex items-center gap-3">
-            <ThemeToggleButton />
-            <button
-              type="button"
-              onClick={() => navigate("/login")}
-              className="rounded-2xl bg-[#69b523] px-5 py-3 text-sm font-bold text-white shadow-xl shadow-[#69b523]/25 transition duration-300 hover:-translate-y-0.5 hover:bg-[#5ca11d]"
-            >
-              Iniciar sesion
-            </button>
-          </div>
+          <HeaderControls />
         </header>
 
         <section className="relative z-10 mx-auto max-w-7xl px-6 pb-16 pt-8 lg:px-10 lg:pt-14">
@@ -156,5 +146,23 @@ export default function Home() {
         </section>
       </div>
     </main>
+  );
+}
+
+function HeaderControls() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex items-center gap-3">
+      <ThemeToggleButton />
+      <SessionStatusBadge forceOffline />
+      <button
+        type="button"
+        onClick={() => navigate("/login")}
+        className="rounded-2xl bg-[#69b523] px-5 py-3 text-sm font-bold text-white shadow-xl shadow-[#69b523]/25 transition duration-300 hover:-translate-y-0.5 hover:bg-[#5ca11d]"
+      >
+        Iniciar sesion
+      </button>
+    </div>
   );
 }

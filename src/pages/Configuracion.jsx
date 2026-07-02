@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/useLanguage.js";
 import { languageOptions } from "../i18n/languages.js";
 import { changePassword } from "../services/api.js";
+import { clearCurrentUser } from "../utils/auth.js";
 
 const defaultPreferences = {
   defaultView: "dashboard",
@@ -70,7 +71,7 @@ function Configuracion() {
   );
 
   const handleSignOut = () => {
-    localStorage.removeItem("datastock-user");
+    clearCurrentUser();
     navigate("/");
   };
 
